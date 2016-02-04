@@ -5,8 +5,10 @@ import "time"
 const (
 	// DefaultDBName is the name of the default database
 	DefaultDBName         	string = "dev"
-	// VendorCollectionName is the name of the collection
+	// VendorCollectionName is the name of the vendor collection
 	VendorCollectionName 	string = "VendorCollection"
+	// RecordCollectionName is the name of the record collection
+	RecordCollectionName 	string = "RecordCollection"
 )
 
 // Vendor is the object represent a vendor

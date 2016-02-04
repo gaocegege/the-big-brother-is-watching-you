@@ -14,7 +14,10 @@ import (
 )
 
 // tbbPort is the port to listen on
-var tbbPort = flag.Int("port", 8080, "The port to listen on")
+var (
+	tbbPort = flag.Int("port", 8080, "The port to listen on")
+	isMock = flag.Bool("mock-mode", false, "mock mode for dev and test")
+)
 
 const (
 	// MongoGracePeriod is the grace period waiting for mongodb to be running.
