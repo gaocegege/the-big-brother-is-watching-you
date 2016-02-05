@@ -9,13 +9,18 @@ const (
 	VendorCollectionName string = "VendorCollection"
 	// RecordCollectionName is the name of the record collection
 	RecordCollectionName string = "RecordCollection"
+
+	// GithubOrigin is the host name of github
+	GithubOrigin = "github.com"
+	// MockOrigin is the host name of mock
+	MockOrigin = "mock.me"
 )
 
 // Vendor is the object represent a vendor
 type Vendor struct {
 	VendorID string    `bson:"_id,omitempty" json:"_id,omitempty"`
 	Host     string    `bson:"host,omitempty" json:"host,omitempty"`
-	LastDate time.Time `bson:"last_time,omitempty" json:"last_time,omitempty"`
+	LastTime time.Time `bson:"last_time,omitempty" json:"last_time,omitempty"`
 	Records  []Record  `bson:"records,omitempty" json:"records,omitempty"`
 }
 

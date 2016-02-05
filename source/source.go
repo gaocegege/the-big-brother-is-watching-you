@@ -9,4 +9,5 @@ import (
 // Source is the interface, represents a vendor
 type Source interface {
 	FetchFromOrigin(beginTime time.Time) ([]common.Record, error)
+	GetHostName() string
 }

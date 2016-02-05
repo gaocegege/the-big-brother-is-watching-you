@@ -8,13 +8,9 @@ ROOT=$(dirname "${BASH_SOURCE}")/..
 
 # clean up local env.
 function local-cleanup {
-  echo "rm tmp dir"
   test -d "${TMPDIR}" && rm -rf $TMPDIR
-  echo "kill mongod process"
   test -n "${MONGO_PID-}" && ps -p $MONGO_PID > /dev/null && kill $MONGO_PID
-  echo "kill tbb process"
   test -n "${TBB_PID-}" && ps -p $TBB_PID > /dev/null && kill $TBB_PID
-  echo "rm all the tmp and processes"
 }
 
 trap local-cleanup INT EXIT
@@ -29,7 +25,8 @@ echo "-> mongodb log in ${TMPDIR}/tbb-mongo.log"
 
 # godep go build -race .
 cd $ROOT
-./the-big-brother-is-watching-you -mock-path=./test/mockfile.txt &
+godep go build -race .
+./the-big-brother-is-watching-you -mock-path=./test/mockfile.txt -poll-period=1 &
 TBB_PID=$!
 
 while true; do sleep 10; done

@@ -25,6 +25,12 @@ func main() {
 		flag.Parse()
 	}
 
+	// get the mongodb session
+	session := getMongoSession()
+	defer session.Close()
+
+	Init(session)
+
 	server := &http.Server{Addr: fmt.Sprintf(":%d", *tbbPort), Handler: restful.DefaultContainer}
 
 	log.Printf("Server listening on %d", *tbbPort)

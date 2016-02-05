@@ -21,14 +21,11 @@ var (
 	period   = flag.Int64("poll-period", 60, "poll period of the ticker")
 )
 
-func init() {
+// Init the main process
+func Init(session *mgo.Session) {
 	if !flag.Parsed() {
 		flag.Parse()
 	}
-
-	// get the mongodb session
-	session := getMongoSession()
-	defer session.Close()
 
 	// alloc the collection managers
 	vendorCM := storage.NewVendorCollectionManager(session)

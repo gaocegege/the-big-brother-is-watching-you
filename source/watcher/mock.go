@@ -11,6 +11,7 @@ import (
 // Mock is the mock source, which use file as source
 type Mock struct {
 	filePath string
+	host     string
 }
 
 // NewMock returns a Mock Object
@@ -24,10 +25,16 @@ func NewMock(filePath string) (*Mock, error) {
 	}
 	return &Mock{
 		filePath: filePath,
+		host:     common.MockOrigin,
 	}, nil
 }
 
 // FetchFromOrigin implements the Source interface
 func (m *Mock) FetchFromOrigin(beginTime time.Time) ([]common.Record, error) {
 	return nil, nil
+}
+
+// GetHostName returns the host name of the origin
+func (m *Mock) GetHostName() string {
+	return m.host
 }

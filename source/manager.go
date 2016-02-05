@@ -30,6 +30,11 @@ func NewManager(mockfilePath string) (*Manager, error) {
 	return nil, errors.New("No watcher registered to manager.")
 }
 
+// GetSources returns all the sources registered to manager
+func (m *Manager) GetSources() []Source {
+	return m.sources
+}
+
 // registerSource is the function to register Source to Manager
 func (m *Manager) registerSource(s Source) {
 	m.sources = append(m.sources, s)

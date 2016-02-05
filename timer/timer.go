@@ -29,6 +29,7 @@ func (t *Timer) Run() {
 			select {
 			case <-t.ticker.C:
 				go func() {
+					log.Print("Worker is doing its jobs.")
 					t.worker.Work()
 				}()
 			}
