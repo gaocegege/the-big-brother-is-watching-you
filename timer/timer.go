@@ -1,34 +1,37 @@
 package timer
 
 import (
+	"log"
 	"time"
+
+	"github.com/gaocegege/the-big-brother-is-watching-you/worker"
 )
 
 // Timer is the timer obeject
 type Timer struct {
-	ticker 	*time.Ticker
+	ticker *time.Ticker
+	worker *worker.Worker
 }
 
-// newTimer return a new Timer object
-func newTimer(min time.Duration) (*Timer, error) {
-	return &Timer {
+// NewTimer return a new Timer object
+func NewTimer(min time.Duration, worker *worker.Worker) (*Timer, error) {
+	return &Timer{
 		ticker: time.NewTicker(min * time.Minute),
+		worker: worker,
 	}, nil
 }
 
-func (t *Timer) run() {
-	go func(){
+// Run the timer
+func (t *Timer) Run() {
+	log.Print("Timer is running now.")
+	go func() {
 		for {
 			select {
-				case <- t.ticker.C:
-					go func(){
-						t.poll()
-					}()
+			case <-t.ticker.C:
+				go func() {
+					t.worker.Work()
+				}()
 			}
 		}
 	}()
-}
-
-func (t *Timer) poll() {
-	
 }

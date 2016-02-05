@@ -1,6 +1,6 @@
 package api
 
-import (	
+import (
 	"github.com/emicklei/go-restful"
 )
 
@@ -13,6 +13,6 @@ type HealthzResponse struct {
 func Healthz(request *restful.Request, response *restful.Response) {
 	var getResponse HealthzResponse
 	getResponse.Message = "Hello, World"
-	
+
 	response.WriteEntity(getResponse)
 }

@@ -2,7 +2,7 @@ package source
 
 import (
 	"errors"
-	
+
 	"github.com/gaocegege/the-big-brother-is-watching-you/source/watcher"
 )
 
@@ -16,17 +16,17 @@ func NewManager(mockfilePath string) (*Manager, error) {
 	m := &Manager{
 		sources: make([]Source, 0),
 	}
-	
+
 	if mockfilePath != "" {
 		mock, err := watcher.NewMock(mockfilePath)
 		if err != nil {
 			return nil, err
 		}
-		
+
 		m.registerSource(mock)
 		return m, nil
 	}
-	
+
 	return nil, errors.New("No watcher registered to manager.")
 }
 

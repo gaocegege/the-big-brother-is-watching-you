@@ -2,10 +2,10 @@ package storage
 
 import (
 	"github.com/gaocegege/the-big-brother-is-watching-you/common"
-	
+
+	"github.com/satori/go.uuid"
 	"gopkg.in/mgo.v2"
 	"gopkg.in/mgo.v2/bson"
-	"github.com/satori/go.uuid"
 )
 
 // RecordCollectionManager is the manager for Record in mongo
@@ -13,8 +13,8 @@ type RecordCollectionManager struct {
 	manager *CollectionManager
 }
 
-// newRecordCollectionManager returns a new RecordCollectionManager object
-func newRecordCollectionManager(s *mgo.Session) *RecordCollectionManager {
+// NewRecordCollectionManager returns a new RecordCollectionManager object
+func NewRecordCollectionManager(s *mgo.Session) *RecordCollectionManager {
 	return &RecordCollectionManager{
 		manager: newCollectionManager(s, common.DefaultDBName, common.RecordCollectionName),
 	}

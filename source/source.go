@@ -2,7 +2,7 @@ package source
 
 import (
 	"time"
-	
+
 	"github.com/gaocegege/the-big-brother-is-watching-you/common"
 )
 

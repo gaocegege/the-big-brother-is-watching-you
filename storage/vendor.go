@@ -2,10 +2,10 @@ package storage
 
 import (
 	"github.com/gaocegege/the-big-brother-is-watching-you/common"
-	
+
+	"github.com/satori/go.uuid"
 	"gopkg.in/mgo.v2"
 	"gopkg.in/mgo.v2/bson"
-	"github.com/satori/go.uuid"
 )
 
 // VendorCollectionManager is the manager for vendor in mongo
@@ -13,8 +13,8 @@ type VendorCollectionManager struct {
 	manager *CollectionManager
 }
 
-// newVendorCollectionManager returns a new VendorCollectionManager object
-func newVendorCollectionManager(s *mgo.Session) *VendorCollectionManager {
+// NewVendorCollectionManager returns a new VendorCollectionManager object
+func NewVendorCollectionManager(s *mgo.Session) *VendorCollectionManager {
 	return &VendorCollectionManager{
 		manager: newCollectionManager(s, common.DefaultDBName, common.VendorCollectionName),
 	}

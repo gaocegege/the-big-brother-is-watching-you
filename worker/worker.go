@@ -14,9 +14,14 @@ type Worker struct {
 
 // NewWorker returns a new Worker object
 func NewWorker(sm *source.Manager, vm *storage.VendorCollectionManager, rm *storage.RecordCollectionManager) *Worker {
-	return &Worker {
+	return &Worker{
 		sm: sm,
 		vm: vm,
 		rm: rm,
 	}
+}
+
+// Work now
+func (w *Worker) Work() {
+
 }

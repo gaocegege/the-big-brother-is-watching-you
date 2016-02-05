@@ -1,10 +1,10 @@
 package watcher
 
 import (
-	"time"
-	"os"
 	"errors"
-	
+	"os"
+	"time"
+
 	"github.com/gaocegege/the-big-brother-is-watching-you/common"
 )
 
@@ -22,7 +22,7 @@ func NewMock(filePath string) (*Mock, error) {
 	if file.IsDir() {
 		return nil, errors.New("In mock mode, filePath must be a file")
 	}
-	return &Mock {
+	return &Mock{
 		filePath: filePath,
 	}, nil
 }
