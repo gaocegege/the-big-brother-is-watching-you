@@ -2,6 +2,6 @@
 
 ## Roadmap
 
-- [] Support Github Watcher
-- [] Integration Test
-- [] Dockerize
+- [ ] Support Github Watcher
+- [ ] Integration Test
+- [ ] Dockerize
