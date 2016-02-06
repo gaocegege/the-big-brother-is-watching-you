@@ -10,17 +10,29 @@ type Manager struct {
 }
 
 // NewManager returns a new Manager Object
-func NewManager() (*Manager, error) {
+func NewManager(mockMode bool, githubUsername string) (*Manager, error) {
 	m := &Manager{
 		sources: make([]Source, 0),
 	}
 
-	mock, err := watcher.NewMock()
-	if err != nil {
-		return nil, err
+	// add mock to manager if mock mode is true
+	if mockMode == true {
+		mock, err := watcher.NewMock()
+		if err != nil {
+			return nil, err
+		}
+		m.registerSource(mock)
 	}
 
-	m.registerSource(mock)
+	// add github to manager if the username is given
+	if githubUsername != "" {
+		git, err := watcher.NewGit(githubUsername)
+		if err != nil {
+			return nil, err
+		}
+		m.registerSource(git)
+	}
+
 	return m, nil
 }
 

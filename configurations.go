@@ -16,8 +16,10 @@ import (
 )
 
 var (
-	mongoIP = flag.String("mongo-db-ip", "localhost", "the location of the mongodb")
-	period  = flag.Int64("poll-period", 60, "poll period of the ticker")
+	mongoIP        = flag.String("mongo-db-ip", "localhost", "the location of the mongodb")
+	period         = flag.Int64("poll-period", 60, "poll period of the ticker")
+	mockMode           = flag.Bool("mock-mode", false, "add mock as a source for test")
+	githubUsername = flag.String("github-username", "", "the username that you wanna watch")
 )
 
 // Init the main process
@@ -31,7 +33,7 @@ func Init(session *mgo.Session) {
 	recordCM := storage.NewRecordCollectionManager(session)
 
 	// alloc source manager
-	sourceM, err := source.NewManager()
+	sourceM, err := source.NewManager(*mockMode, *githubUsername)
 	if err != nil {
 		log.Fatal(err)
 	}
