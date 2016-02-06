@@ -26,9 +26,9 @@ type Vendor struct {
 
 // Record is a object, which means that ttb has found a update
 type Record struct {
-	RecordID  string    `bson:"_id,omitempty" json:"_id,omitempty"`
-	VendorID  string    `bson:"vendor_id,omitempty" json:"vendor_id,omitempty"`
-	Content   string    `bson:content,omitempty" json:"content,omitempty"`
+	RecordID   string    `bson:"_id,omitempty" json:"_id,omitempty"`
+	VendorID   string    `bson:"vendor_id,omitempty" json:"vendor_id,omitempty"`
+	Content    string    `bson:content,omitempty" json:"content,omitempty"`
 	CreateTime time.Time `bson:create_time,omitempty" json:"create_time,omitempty"`
-	URL       string    `bson:"url,omitempty" json:"url,omitempty"`
+	URL        string    `bson:"url,omitempty" json:"url,omitempty"`
 }
