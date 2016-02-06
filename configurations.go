@@ -18,7 +18,7 @@ import (
 var (
 	mongoIP        = flag.String("mongo-db-ip", "localhost", "the location of the mongodb")
 	period         = flag.Int64("poll-period", 60, "poll period of the ticker")
-	mockMode           = flag.Bool("mock-mode", false, "add mock as a source for test")
+	mockMode       = flag.Bool("mock-mode", false, "add mock as a source for test")
 	githubUsername = flag.String("github-username", "", "the username that you wanna watch")
 )
 

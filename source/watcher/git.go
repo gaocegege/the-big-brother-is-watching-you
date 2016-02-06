@@ -35,7 +35,8 @@ type Payload struct {
 // NewGit returns a new Git object
 func NewGit(username string) (*Git, error) {
 	return &Git{
-		host: common.GithubOrigin,
+		host:     common.GithubOrigin,
+		username: username,
 	}, nil
 }
 
@@ -55,7 +56,7 @@ func (g *Git) FetchFromOrigin(vendorID string, t time.Time) ([]common.Record, er
 	var records []GitRecord
 	json.Unmarshal(binRes, records)
 
-	log.Printf("%s", binRes)
+	log.Printf("From %s: %s", githubURL, binRes)
 
 	return nil, nil
 }
