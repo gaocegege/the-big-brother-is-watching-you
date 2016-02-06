@@ -1,9 +1,7 @@
 package watcher
 
 import (
-	"errors"
 	"fmt"
-	"os"
 	"time"
 
 	"github.com/gaocegege/the-big-brother-is-watching-you/common"
@@ -11,24 +9,15 @@ import (
 
 // Mock is the mock source, which use file as source
 type Mock struct {
-	filePath string
-	host     string
-	counter  int
+	host    string
+	counter int
 }
 
 // NewMock returns a Mock Object
-func NewMock(filePath string) (*Mock, error) {
-	file, err := os.Stat(filePath)
-	if err != nil {
-		return nil, err
-	}
-	if file.IsDir() {
-		return nil, errors.New("In mock mode, filePath must be a file")
-	}
+func NewMock() (*Mock, error) {
 	return &Mock{
-		filePath: filePath,
-		host:     common.MockOrigin,
-		counter:  1,
+		host:    common.MockOrigin,
+		counter: 1,
 	}, nil
 }
 

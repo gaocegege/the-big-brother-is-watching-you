@@ -16,9 +16,8 @@ import (
 )
 
 var (
-	mongoIP  = flag.String("mongo-db-ip", "localhost", "the location of the mongodb")
-	mockPath = flag.String("mock-path", "", "the location of the mock orgin")
-	period   = flag.Int64("poll-period", 60, "poll period of the ticker")
+	mongoIP = flag.String("mongo-db-ip", "localhost", "the location of the mongodb")
+	period  = flag.Int64("poll-period", 60, "poll period of the ticker")
 )
 
 // Init the main process
@@ -32,7 +31,7 @@ func Init(session *mgo.Session) {
 	recordCM := storage.NewRecordCollectionManager(session)
 
 	// alloc source manager
-	sourceM, err := source.NewManager(*mockPath)
+	sourceM, err := source.NewManager()
 	if err != nil {
 		log.Fatal(err)
 	}

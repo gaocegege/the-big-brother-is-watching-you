@@ -1,8 +1,6 @@
 package source
 
 import (
-	"errors"
-
 	"github.com/gaocegege/the-big-brother-is-watching-you/source/watcher"
 )
 
@@ -12,22 +10,18 @@ type Manager struct {
 }
 
 // NewManager returns a new Manager Object
-func NewManager(mockfilePath string) (*Manager, error) {
+func NewManager() (*Manager, error) {
 	m := &Manager{
 		sources: make([]Source, 0),
 	}
 
-	if mockfilePath != "" {
-		mock, err := watcher.NewMock(mockfilePath)
-		if err != nil {
-			return nil, err
-		}
-
-		m.registerSource(mock)
-		return m, nil
+	mock, err := watcher.NewMock()
+	if err != nil {
+		return nil, err
 	}
 
-	return nil, errors.New("No watcher registered to manager.")
+	m.registerSource(mock)
+	return m, nil
 }
 
 // GetSources returns all the sources registered to manager
