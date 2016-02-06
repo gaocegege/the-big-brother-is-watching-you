@@ -14,9 +14,9 @@ type Timer struct {
 }
 
 // NewTimer return a new Timer object
-func NewTimer(min time.Duration, worker *worker.Worker) (*Timer, error) {
+func NewTimer(sec time.Duration, worker *worker.Worker) (*Timer, error) {
 	return &Timer{
-		ticker: time.NewTicker(min * time.Minute),
+		ticker: time.NewTicker(sec * time.Second),
 		worker: worker,
 	}, nil
 }

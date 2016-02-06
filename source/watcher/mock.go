@@ -4,6 +4,7 @@ import (
 	"errors"
 	"os"
 	"time"
+	"fmt"
 
 	"github.com/gaocegege/the-big-brother-is-watching-you/common"
 )
@@ -12,6 +13,7 @@ import (
 type Mock struct {
 	filePath string
 	host     string
+	counter	 int
 }
 
 // NewMock returns a Mock Object
@@ -26,15 +28,26 @@ func NewMock(filePath string) (*Mock, error) {
 	return &Mock{
 		filePath: filePath,
 		host:     common.MockOrigin,
+		counter: 1,
 	}, nil
 }
 
 // FetchFromOrigin implements the Source interface
-func (m *Mock) FetchFromOrigin(beginTime time.Time) ([]common.Record, error) {
-	return nil, nil
+func (m *Mock) FetchFromOrigin(vendorID string, beginTime time.Time) ([]common.Record, error) {
+	var records = make([]common.Record, 0)
+	var record = common.Record {
+			VendorID: vendorID,
+		Content: fmt.Sprintf("For dev: %d", m.counter),
+		CreateTime: time.Now(),
+		URL: fmt.Sprintf("%s/%d", m.host, m.counter),
+	}
+	
+	records = append(records, record)
+	m.counter = m.counter + 1
+	return records, nil
 }
 
-// GetHostName returns the host name of the origin
+// GetHostName implements the Source interface
 func (m *Mock) GetHostName() string {
 	return m.host
 }

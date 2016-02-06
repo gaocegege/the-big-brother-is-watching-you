@@ -26,7 +26,7 @@ echo "-> mongodb log in ${TMPDIR}/tbb-mongo.log"
 # godep go build -race .
 cd $ROOT
 godep go build -race .
-./the-big-brother-is-watching-you -mock-path=./test/mockfile.txt -poll-period=1 &
+./the-big-brother-is-watching-you -mock-path=./test/mockfile.txt -poll-period=20 &
 TBB_PID=$!
 
-while true; do sleep 10; done
+while true; do sleep 100; done

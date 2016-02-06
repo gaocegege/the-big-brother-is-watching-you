@@ -64,7 +64,7 @@ func (w *Worker) Work() {
 		w.vm.UpdateVendorDocument(vendor.VendorID, *vendor)
 
 		// check out the last date, and fetch origin
-		records, err := source.FetchFromOrigin(lastTime)
+		records, err := source.FetchFromOrigin(vendor.VendorID, lastTime)
 		if err != nil {
 			log.Fatal(err)
 		}
