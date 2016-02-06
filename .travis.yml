@@ -4,4 +4,4 @@ go:
  - 1.5
  - tip
  
- script: make build-travis
+script: make build-travis
