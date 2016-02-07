@@ -1,14 +1,14 @@
 package watcher
 
 import (
-	"encoding/json"
 	"fmt"
-	"io/ioutil"
 	"log"
 	"net/http"
 	"time"
 
 	"github.com/gaocegege/the-big-brother-is-watching-you/common"
+	
+	"github.com/bitly/go-simplejson"
 )
 
 const (
@@ -24,7 +24,7 @@ type Git struct {
 // GitRecord is a record from the api.github.com
 type GitRecord struct {
 	Payload  string `json:"payload,omitempty"`
-	CreateAt string `json:created_at,omitempty`
+	CreatedAt string `json:created_at,omitempty`
 }
 
 // Payload is the field in GitRecord
@@ -47,17 +47,22 @@ func (g *Git) FetchFromOrigin(vendorID string, t time.Time) ([]common.Record, er
 	if err != nil {
 		log.Fatal(err)
 	}
-	binRes, err := ioutil.ReadAll(res.Body)
-	res.Body.Close()
+	// binRes, err := ioutil.ReadAll(res.Body)
+	// res.Body.Close()
+	// if err != nil {
+	// 	log.Fatal(err)
+	// }
+	
+	v, err := simplejson.NewFromReader(res.Body)
 	if err != nil {
 		log.Fatal(err)
 	}
-
-	var records []GitRecord
-	json.Unmarshal(binRes, records)
-
-	log.Printf("From %s: %s", githubURL, binRes)
-
+	// records, err := v.Array()
+	// if err != nil {
+	// 	log.Fatal(err)
+	// }
+	log.Printf("Created_at: %s", v.GetIndex(0).Get("created_at"))
+	
 	return nil, nil
 }
 
