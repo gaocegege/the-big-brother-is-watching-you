@@ -1,9 +1,16 @@
-services:
-  mongo:
-    image: mongo
-
 integration:
+
+  services:
+    mongo:
+      image: mongo:2.4
+      command: mongod
+      
   image: golang:1.5
+  volumes:
+    - .:/go/github.com/gaocegege/the-big-brother-is-watching-you
+  env:
+    - GOPATH=/go
   commands: 
-    - ls
-    - go run main.go
+    - go get github.com/tools/godep
+    - godep go build -race .
+    - ./the-big-brother-is-watching-you --mongo-db-ip=mongo
