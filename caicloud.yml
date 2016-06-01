@@ -11,6 +11,9 @@ integration:
   env:
     - GOPATH=/go
   commands: 
+    - echo $GOPATH
+    - pwd
+    - ls
     - go get github.com/tools/godep
     - godep go build -race .
     - ./the-big-brother-is-watching-you --mongo-db-ip=mongo
