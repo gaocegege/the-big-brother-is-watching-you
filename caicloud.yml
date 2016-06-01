@@ -7,7 +7,7 @@ integration:
       
   image: golang:1.5
   volumes:
-    - .:/go/github.com/gaocegege/the-big-brother-is-watching-you
+    - .:/go/src/github.com/gaocegege/the-big-brother-is-watching-you
   env:
     - GOPATH=/go
   commands: 
